@@ -1,0 +1,10 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: wget https://cdn.geekbench.com/Geekbench-5.5.1-Linux.tar.gz
+      - run: tar --strip-components=1 -xf Geekbench-*-Linux.tar.gz
+      - run: ./geekbench5
