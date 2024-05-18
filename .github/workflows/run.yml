@@ -3,8 +3,13 @@ on:
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+        version: [6.3.0, 5.5.1]
+
+    runs-on: ${{ matrix.os }}
     steps:
-      - run: wget https://cdn.geekbench.com/Geekbench-6.2.2-Linux.tar.gz
+      - run: wget https://cdn.geekbench.com/Geekbench-${{ matrix.version }}-Linux.tar.gz
       - run: tar --strip-components=1 -xf Geekbench-*-Linux.tar.gz
-      - run: ./geekbench6
+      - run: ./geekbench[0-9]
